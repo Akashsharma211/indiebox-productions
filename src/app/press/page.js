@@ -1,0 +1,22 @@
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { Mic } from "lucide-react";
+
+export default function PressPage() {
+  return (
+    <main className="bg-[#2B2B2B] min-h-screen text-[#EAE9DE] font-sans selection:bg-[#EF7D33] selection:text-[#2B2B2B]">
+      <Navbar />
+      
+      <div className="pt-40 pb-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto text-center">
+        <Mic className="w-20 h-20 text-[#EF7D33] mx-auto mb-8" />
+        <h1 className="text-5xl md:text-7xl font-black text-[#EF7D33] tracking-tighter mb-8">PRESS</h1>
+        <p className="text-xl text-gray-400 leading-relaxed max-w-2xl mx-auto">
+          For all media inquiries, press kits, and interview requests with our artists or executive team, 
+          please reach out through our booking portal. Official brand assets are available upon request.
+        </p>
+      </div>
+
+      <Footer />
+    </main>
+  );
+}
