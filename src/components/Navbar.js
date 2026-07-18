@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Logo from "./Logo";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -28,7 +27,7 @@ export default function Navbar() {
         <div className="bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl flex items-center justify-between h-[64px] rounded-2xl px-6">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
-            <Logo className="h-8 w-auto hover:opacity-80 transition-opacity" />
+            <img src="/logoofindiepng.png" alt="Indiebox Logo" className="h-10 w-auto object-contain hover:opacity-80 transition-opacity" />
           </Link>
 
           {/* Links */}

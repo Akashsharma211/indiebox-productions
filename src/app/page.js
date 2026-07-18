@@ -4,6 +4,7 @@ import ServicesSection from "@/components/ServicesSection";
 import ArtistsSection from "@/components/ArtistsSection";
 import ReleasesSection from "@/components/ReleasesSection";
 import Footer from "@/components/Footer";
+import LogoMarquee from "@/components/LogoMarquee";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       {/* Subsequent Sections */}
       <div className="relative z-10 bg-[#2B2B2B]">
         <ServicesSection />
+        <LogoMarquee />
         <ArtistsSection />
         <ReleasesSection />
         <Footer />

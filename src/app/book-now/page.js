@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import emailjs from '@emailjs/browser';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Send, CheckCircle } from "lucide-react";
@@ -9,29 +10,40 @@ export default function BookNowPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     inquiryType: "General",
     message: ""
   });
-  const [status, setStatus] = useState("idle"); // idle, submitting, success, error
+  const [status, setStatus] = useState("idle");
+
+  useEffect(() => {
+    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("submitting");
 
     try {
-      const res = await fetch("/api/book", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const templateParams = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        inquiry_type: formData.inquiryType,
+        message: formData.message,
+      };
 
-      if (res.ok) {
-        setStatus("success");
-        setFormData({ name: "", email: "", inquiryType: "General", message: "" });
-      } else {
-        setStatus("error");
-      }
+      const result = await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        templateParams
+      );
+
+      console.log("EmailJS Success:", result.status, result.text);
+      setStatus("success");
+      setFormData({ name: "", email: "", phone: "", inquiryType: "General", message: "" });
     } catch (error) {
+      console.error("EmailJS Error:", error?.status, error?.text);
       setStatus("error");
     }
   };
@@ -62,6 +74,7 @@ export default function BookNowPage() {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl">
+            {/* Row 1: Name + Email */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               <div>
                 <label className="block text-sm font-bold tracking-widest uppercase text-gray-400 mb-2">Name</label>
@@ -87,22 +100,35 @@ export default function BookNowPage() {
               </div>
             </div>
 
-            <div className="mb-8">
-              <label className="block text-sm font-bold tracking-widest uppercase text-gray-400 mb-2">Inquiry Type</label>
-              <select 
-                value={formData.inquiryType}
-                onChange={e => setFormData({...formData, inquiryType: e.target.value})}
-                className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-[#EAE9DE] focus:outline-none focus:border-[#EF7D33] transition-colors appearance-none"
-              >
-                <option value="Artist Booking">Artist Booking</option>
-                <option value="Music Production">Music Production</option>
-                <option value="Mixing & Mastering">Mixing & Mastering</option>
-                <option value="Video Services">Video Services</option>
-                <option value="Creative Direction">Creative Direction</option>
-                <option value="Sync & Licensing">Sync & Licensing</option>
-                <option value="Brand Partnership">Brand Partnership</option>
-                <option value="General">General Inquiry</option>
-              </select>
+            {/* Row 2: Phone + Inquiry Type */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+              <div>
+                <label className="block text-sm font-bold tracking-widest uppercase text-gray-400 mb-2">Phone Number</label>
+                <input 
+                  type="tel"
+                  value={formData.phone}
+                  onChange={e => setFormData({...formData, phone: e.target.value})}
+                  className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-[#EAE9DE] focus:outline-none focus:border-[#EF7D33] transition-colors"
+                  placeholder="+91 98765 43210"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-bold tracking-widest uppercase text-gray-400 mb-2">Inquiry Type</label>
+                <select 
+                  value={formData.inquiryType}
+                  onChange={e => setFormData({...formData, inquiryType: e.target.value})}
+                  className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-[#EAE9DE] focus:outline-none focus:border-[#EF7D33] transition-colors appearance-none h-[50px]"
+                >
+                  <option value="Artist Booking">Artist Booking</option>
+                  <option value="Music Production">Music Production</option>
+                  <option value="Mixing & Mastering">Mixing & Mastering</option>
+                  <option value="Video Services">Video Services</option>
+                  <option value="Creative Direction">Creative Direction</option>
+                  <option value="Sync & Licensing">Sync & Licensing</option>
+                  <option value="Brand Partnership">Brand Partnership</option>
+                  <option value="General">General Inquiry</option>
+                </select>
+              </div>
             </div>
 
             <div className="mb-10">

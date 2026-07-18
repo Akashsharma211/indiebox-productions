@@ -1,7 +1,16 @@
 import { prisma } from "@/lib/prisma";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Disc3 } from "lucide-react";
+
+export const metadata = {
+  title: "Latest Releases | New Indie Music — Gumshuda, Mahiya Ve",
+  description: "Listen to the latest music releases from Indiebox Productions. Stream Gumshuda and Mahiya Ve by Jatin Arya. Discover fresh indie music from India's top independent music label.",
+  keywords: ["Gumshuda song", "Mahiya Ve song", "Jatin Arya new song", "indie music releases India", "new indie songs 2024", "Indiebox releases", "indie music streaming"],
+  openGraph: {
+    title: "Latest Releases | Indiebox Productions",
+    description: "New music from Indiebox Productions. Stream Gumshuda and Mahiya Ve by Jatin Arya and more fresh indie music.",
+  },
+};
 
 export const dynamic = "force-dynamic";
 
@@ -13,18 +22,17 @@ export default async function ReleasesPage() {
     });
   } catch (error) {
     releases = [
-      { id: "1", title: "Midnight Sun", artistName: "ECLIPSE", coverUrl: "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&w=800&q=80", type: "Album", releaseDate: new Date() },
-      { id: "2", title: "Visions", artistName: "NOVA", coverUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80", type: "EP", releaseDate: new Date() },
+      { id: "1", title: "Mahiya Ve", artistName: "Jatin Arya", coverUrl: "/spotify-artwork-mahiya-ve-3000x3000.jpg", type: "Single", releaseDate: new Date() },
+      { id: "2", title: "Gumshuda", artistName: "Jatin Arya", coverUrl: "/spotify-artwork-gumshuda-3000x3000.jpg", type: "Single", releaseDate: new Date() },
       { id: "3", title: "Live at the Roxy", artistName: "THE DRIFTERS", coverUrl: "https://images.unsplash.com/photo-1493225457124-a1a2a5f5f9af?auto=format&fit=crop&w=800&q=80", type: "Live", releaseDate: new Date() },
-      { id: "4", title: "Awakening", artistName: "ECLIPSE", coverUrl: "https://images.unsplash.com/photo-1557672172-298e090bd0f1?auto=format&fit=crop&w=800&q=80", type: "Single", releaseDate: new Date() },
-      { id: "5", title: "Neon Nights", artistName: "LUNA", coverUrl: "https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?auto=format&fit=crop&w=800&q=80", type: "Single", releaseDate: new Date() }
+      { id: "4", title: "Awakening", artistName: "ECLIPSE", coverUrl: "https://images.unsplash.com/photo-1557672172-298e090bd0f1?auto=format&fit=crop&w=800&q=80", type: "Single", releaseDate: new Date() }
     ];
   }
 
   return (
     <main className="bg-[#2B2B2B] min-h-screen text-[#EAE9DE] font-sans selection:bg-[#EF7D33] selection:text-[#2B2B2B]">
       <Navbar />
-      
+
       <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <h1 className="text-5xl md:text-7xl font-black text-[#EF7D33] tracking-tighter mb-4 text-center">LATEST RELEASES</h1>
         <p className="text-center text-gray-400 max-w-2xl mx-auto mb-16 text-lg">
@@ -35,14 +43,11 @@ export default async function ReleasesPage() {
           {releases.map(release => (
             <div key={release.id} className="group cursor-pointer">
               <div className="relative aspect-square rounded-xl overflow-hidden mb-4 border border-white/5 shadow-2xl">
-                <img 
-                  src={release.coverUrl} 
-                  alt={release.title} 
+                <img
+                  src={release.coverUrl}
+                  alt={release.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
-                  <Disc3 className="w-12 h-12 text-[#EF7D33] animate-spin-slow" />
-                </div>
               </div>
               <h3 className="text-xl font-bold text-[#EAE9DE] tracking-tight group-hover:text-[#EF7D33] transition-colors">{release.title}</h3>
               <p className="text-gray-400 font-medium text-sm mt-1">{release.artistName}</p>

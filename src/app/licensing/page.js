@@ -3,6 +3,16 @@ import Footer from "@/components/Footer";
 import { Music, Video, ShieldCheck, Zap } from "lucide-react";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Sync Licensing | Music Licensing for Film, TV & Ads India",
+  description: "License music from Indiebox Productions for films, TV shows, advertisements, and digital content in India. Get world-class indie music for your visual projects with full sync rights.",
+  keywords: ["music sync licensing India", "music for film India", "music for TV ads", "sync rights India", "indie music licensing", "music supervision India", "background score licensing"],
+  openGraph: {
+    title: "Sync Licensing | Indiebox Productions",
+    description: "License premium indie music for films, TV, and ads. World-class sync licensing from Indiebox Productions.",
+  },
+};
+
 export default function LicensingPage() {
   return (
     <main className="bg-[#2B2B2B] min-h-screen text-[#EAE9DE] font-sans selection:bg-[#EF7D33] selection:text-[#2B2B2B] relative overflow-hidden">

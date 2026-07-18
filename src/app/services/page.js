@@ -3,6 +3,16 @@ import Footer from "@/components/Footer";
 import { Headphones, Video, Sliders, Palette, Zap } from "lucide-react";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Services | Music Production, Mixing, Mastering & Video India",
+  description: "Professional music production, mixing & mastering, cinematic video production, creative direction, and sync licensing services in India. Work with Indiebox Productions to elevate your sound.",
+  keywords: ["music production services India", "mixing and mastering services", "music video production India", "sync licensing services", "creative direction music", "professional music recording", "mastering studio India"],
+  openGraph: {
+    title: "Services | Indiebox Productions",
+    description: "World-class music production, mixing & mastering, video production, and sync licensing services in India.",
+  },
+};
+
 export default function ServicesPage() {
   const services = [
     {

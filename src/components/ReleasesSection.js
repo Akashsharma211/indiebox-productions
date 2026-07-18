@@ -20,40 +20,111 @@ export default async function ReleasesSection() {
   }
 
   return (
-    <section className="bg-[#252525] py-24 px-4 sm:px-6 lg:px-8 border-t border-white/5 relative z-10">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-black text-[#EAE9DE] tracking-tight mb-12 text-center">Latest Releases</h2>
+    <section className="bg-[#0B0F19] py-24 px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[90rem] mx-auto">
+        <h2 className="text-4xl md:text-5xl font-black text-[#EAE9DE] tracking-tight mb-12 text-center uppercase">Latest Releases</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {releases.map((release) => (
-            <div key={release.id} className="group cursor-pointer">
-              <div className="relative aspect-square rounded-xl overflow-hidden mb-4 border border-white/5 shadow-2xl">
+        <div className="flex flex-col gap-8 md:gap-12">
+          
+          {/* SET 1 */}
+          {releases[0] && (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+              {/* Large Tile (Details) */}
+              <div className="group relative w-full aspect-[4/5] md:aspect-auto md:h-[600px] lg:h-[700px] md:col-span-2 overflow-hidden bg-black flex items-center justify-center cursor-pointer">
                 <img 
-                  src={release.coverUrl} 
-                  alt={release.title} 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  src="/spotify-artwork-mahiya-ve-3000x3000.jpg" 
+                  alt="Mahiya Ve" 
+                  className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
-                  <Disc3 className="w-12 h-12 text-[#EF7D33] animate-spin-slow" />
+                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/40"></div>
+
+                <div className="absolute top-6 left-6 flex items-center gap-1">
+                  <span className="text-white font-black text-xs tracking-widest uppercase">INDIEBOX</span>
+                  <span className="text-gray-300 text-xs tracking-widest uppercase">RELEASE</span>
+                </div>
+
+                <div className="absolute bottom-10 left-0 right-0 px-6 flex flex-col items-center text-center">
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="text-white font-bold tracking-widest uppercase text-sm md:text-base">Jatin Arya</span>
+                    <span className="text-white italic font-serif text-sm md:text-base">Single</span>
+                  </div>
+                  <div className="relative inline-block">
+                    <h3 className="text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[0.85] tracking-tighter uppercase drop-shadow-2xl">
+                      {['MAHIYA', 'VE'].map((word, wIdx) => (
+                        <span key={wIdx} className={wIdx % 2 !== 0 ? 'italic font-serif font-medium mr-3' : 'mr-3'}>
+                          {word}
+                        </span>
+                      ))}
+                    </h3>
+                  </div>
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-[#EAE9DE] tracking-tight group-hover:text-[#EF7D33] transition-colors">{release.title}</h3>
-              <p className="text-gray-400 font-medium text-sm mt-1">{release.artistName}</p>
-              <div className="flex justify-between items-center mt-3">
-                <span className="text-xs font-black text-[#EF7D33] tracking-widest uppercase px-2 py-1 bg-[#EF7D33]/10 rounded-md">
-                  {release.type}
-                </span>
-                <span className="text-xs text-gray-500 font-medium">
-                  {new Date(release.releaseDate).getFullYear()}
-                </span>
+
+              {/* Small Tile (Video) */}
+              <div className="relative w-full aspect-[4/5] md:aspect-auto md:h-[600px] lg:h-[700px] md:col-span-1 overflow-hidden bg-black">
+                <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-70 hover:opacity-100 transition-opacity duration-500">
+                  <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
               </div>
             </div>
-          ))}
+          )}
+
+          {/* SET 2 */}
+          {releases[1] && (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+              {/* Small Tile (Video) - Reversed visually on Desktop */}
+              <div className="relative w-full aspect-[4/5] md:aspect-auto md:h-[600px] lg:h-[700px] md:col-span-1 overflow-hidden bg-black order-2 md:order-1">
+                <video 
+                  src="/gumshuda-video.webm" 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline 
+                  className="absolute inset-0 w-full h-full object-cover opacity-70 hover:opacity-100 transition-opacity duration-500"
+                />
+              </div>
+
+              {/* Large Tile (Details) */}
+              <div className="group relative w-full aspect-[4/5] md:aspect-auto md:h-[600px] lg:h-[700px] md:col-span-2 overflow-hidden bg-black flex items-center justify-center cursor-pointer order-1 md:order-2">
+                <img 
+                  src="/spotify-artwork-gumshuda-3000x3000.jpg" 
+                  alt="Gumshuda" 
+                  className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700 ease-out"
+                />
+                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/40"></div>
+
+                <div className="absolute top-6 right-6 flex items-center gap-1">
+                  <span className="text-white font-black text-xs tracking-widest uppercase">INDIEBOX</span>
+                  <span className="text-gray-300 text-xs tracking-widest uppercase">RELEASE</span>
+                </div>
+
+                <div className="absolute bottom-10 left-0 right-0 px-6 flex flex-col items-center text-center">
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="text-white font-bold tracking-widest uppercase text-sm md:text-base">Jatin Arya</span>
+                    <span className="text-white italic font-serif text-sm md:text-base">Single</span>
+                  </div>
+                  <div className="relative inline-block">
+                    <h3 className="text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[0.85] tracking-tighter uppercase drop-shadow-2xl">
+                      {['GUMSHUDA'].map((word, wIdx) => (
+                        <span key={wIdx} className={wIdx % 2 !== 0 ? 'italic font-serif font-medium mr-3' : 'mr-3'}>
+                          {word}
+                        </span>
+                      ))}
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
         </div>
 
         <div className="mt-16 text-center">
-          <Link href="/releases" className="inline-block border border-white/20 text-[#EAE9DE] hover:bg-white hover:text-black transition-colors px-8 py-3 rounded-full uppercase text-sm font-semibold tracking-wider">
-            Explore Discography
+          <Link href="/releases" className="inline-block border-2 border-white/20 text-[#EAE9DE] hover:bg-white hover:text-black hover:border-white transition-all px-10 py-4 rounded-full uppercase text-sm font-black tracking-widest">
+            Explore Full Catalog
           </Link>
         </div>
       </div>

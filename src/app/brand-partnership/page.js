@@ -3,6 +3,16 @@ import Footer from "@/components/Footer";
 import { Handshake, Target, TrendingUp } from "lucide-react";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Brand Partnership | Music Brand Collaborations India",
+  description: "Partner with Indiebox Productions for impactful brand-music collaborations. Connect your brand with India's top indie artists for campaigns, sponsorships, and creative integrations.",
+  keywords: ["music brand partnership India", "brand music collaboration", "artist sponsorship India", "music marketing India", "brand integration music", "indie artist brand deal"],
+  openGraph: {
+    title: "Brand Partnership | Indiebox Productions",
+    description: "Connect your brand with India's top indie artists through strategic music partnerships and campaigns.",
+  },
+};
+
 export default function BrandPartnershipPage() {
   return (
     <main className="bg-[#2B2B2B] min-h-screen text-[#EAE9DE] font-sans selection:bg-[#EF7D33] selection:text-[#2B2B2B] relative overflow-hidden">
