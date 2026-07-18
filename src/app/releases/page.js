@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Image from "next/image";
 
 export const metadata = {
   title: "Latest Releases | New Indie Music — Gumshuda, Mahiya Ve",
@@ -12,7 +13,9 @@ export const metadata = {
   },
 };
 
-export const dynamic = "force-dynamic";
+// ISR: revalidate every 60 seconds instead of force-dynamic
+// This caches the page at the CDN edge and only re-fetches from DB periodically
+export const revalidate = 60;
 
 export default async function ReleasesPage() {
   let releases = [];
@@ -43,10 +46,13 @@ export default async function ReleasesPage() {
           {releases.map(release => (
             <div key={release.id} className="group cursor-pointer">
               <div className="relative aspect-square rounded-xl overflow-hidden mb-4 border border-white/5 shadow-2xl">
-                <img
+                <Image
                   src={release.coverUrl}
                   alt={release.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  priority={false}
                 />
               </div>
               <h3 className="text-xl font-bold text-[#EAE9DE] tracking-tight group-hover:text-[#EF7D33] transition-colors">{release.title}</h3>
