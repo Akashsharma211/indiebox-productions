@@ -26,9 +26,7 @@ export default async function ReleasesPage() {
   } catch (error) {
     releases = [
       { id: "1", title: "Mahiya Ve", artistName: "Jatin Arya", coverUrl: "/spotify-artwork-mahiya-ve-3000x3000.jpg", type: "Single", releaseDate: new Date() },
-      { id: "2", title: "Gumshuda", artistName: "Jatin Arya", coverUrl: "/spotify-artwork-gumshuda-3000x3000.jpg", type: "Single", releaseDate: new Date() },
-      { id: "3", title: "Live at the Roxy", artistName: "THE DRIFTERS", coverUrl: "https://images.unsplash.com/photo-1493225457124-a1a2a5f5f9af?auto=format&fit=crop&w=800&q=80", type: "Live", releaseDate: new Date() },
-      { id: "4", title: "Awakening", artistName: "ECLIPSE", coverUrl: "https://images.unsplash.com/photo-1557672172-298e090bd0f1?auto=format&fit=crop&w=800&q=80", type: "Single", releaseDate: new Date() }
+      { id: "2", title: "Gumshuda", artistName: "Jatin Arya", coverUrl: "/spotify-artwork-gumshuda-3000x3000.jpg", type: "Single", releaseDate: new Date() }
     ];
   }
 

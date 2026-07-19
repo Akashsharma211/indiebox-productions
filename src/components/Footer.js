@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { Mail, Globe, Phone, MessageCircle } from "lucide-react";
-
+import { Mail, Phone, MessageCircle } from "lucide-react";
 export default function Footer() {
   return (
     <footer className="bg-[#2B2B2B] py-16 px-4 sm:px-6 lg:px-8 border-t border-white/10 relative z-10">
@@ -35,15 +34,19 @@ export default function Footer() {
           <div>
             <h3 className="text-[#EF7D33] font-bold uppercase tracking-wider text-sm mb-4">Connect</h3>
             <div className="flex space-x-4">
-              <Link href="#" className="text-gray-400 hover:text-[#EAE9DE] transition-colors">
-                <Globe className="w-5 h-5" />
-              </Link>
+              <a href="https://www.instagram.com/indieboxproductions/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#EAE9DE] transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </a>
               <Link href="/book-now" className="text-gray-400 hover:text-[#EAE9DE] transition-colors">
                 <MessageCircle className="w-5 h-5" />
               </Link>
-              <Link href="mailto:hello@indiebox.com" className="text-gray-400 hover:text-[#EAE9DE] transition-colors">
+              <a href="mailto:jatinarya.team@gmail.com" className="text-gray-400 hover:text-[#EAE9DE] transition-colors">
                 <Mail className="w-5 h-5" />
-              </Link>
+              </a>
             </div>
           </div>
         </div>

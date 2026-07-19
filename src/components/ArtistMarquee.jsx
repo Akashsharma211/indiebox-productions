@@ -1,33 +1,76 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function ArtistMarquee({ artists }) {
   const [selectedArtist, setSelectedArtist] = useState(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    let animationFrameId;
+    
+    const autoScroll = () => {
+      if (scrollRef.current && !isHovered && !selectedArtist) {
+        scrollRef.current.scrollLeft += 1;
+        // If we've reached the end of the scrollable area, seamlessly loop back
+        if (
+          scrollRef.current.scrollLeft >=
+          scrollRef.current.scrollWidth - scrollRef.current.clientWidth - 5
+        ) {
+          scrollRef.current.scrollLeft = 0;
+        }
+      }
+      animationFrameId = requestAnimationFrame(autoScroll);
+    };
+    
+    animationFrameId = requestAnimationFrame(autoScroll);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isHovered, selectedArtist]);
 
   // Duplicate artists array multiple times to ensure a seamless infinite scroll 
   // even on very wide screens.
-  const duplicatedArtists = [...artists, ...artists, ...artists, ...artists, ...artists, ...artists];
+  const duplicatedArtists = [...artists, ...artists, ...artists, ...artists];
 
   return (
     <>
       <style>{`
-        @keyframes marquee-right {
-          0% { transform: translateX(-50%); }
-          100% { transform: translateX(0%); }
-        }
-        .animate-marquee-right {
-          animation: marquee-right 60s linear infinite;
-        }
-        .pause-on-hover:hover .animate-marquee-right {
-          animation-play-state: paused;
+        .hide-scroll::-webkit-scrollbar {
+          display: none;
         }
       `}</style>
 
-      <div className="w-full overflow-hidden relative pause-on-hover py-12 my-8 flex items-center">
-        <div className="flex items-center gap-10 md:gap-16 w-max animate-marquee-right px-4">
+      <div 
+        className="w-full relative my-8 group/carousel"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <button 
+          onClick={() => {
+            if (scrollRef.current) scrollRef.current.scrollBy({ left: -400, behavior: 'smooth' });
+          }}
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-40 bg-black/60 hover:bg-[#EF7D33] border border-white/10 text-white p-3 rounded-full backdrop-blur-md opacity-0 group-hover/carousel:opacity-100 transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.8)] hover:scale-110"
+        >
+          <ChevronLeft size={32} />
+        </button>
+
+        <button 
+          onClick={() => {
+            if (scrollRef.current) scrollRef.current.scrollBy({ left: 400, behavior: 'smooth' });
+          }}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-40 bg-black/60 hover:bg-[#EF7D33] border border-white/10 text-white p-3 rounded-full backdrop-blur-md opacity-0 group-hover/carousel:opacity-100 transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.8)] hover:scale-110"
+        >
+          <ChevronRight size={32} />
+        </button>
+
+        <div 
+          ref={scrollRef}
+          className="flex items-center gap-10 md:gap-16 w-full overflow-x-auto px-4 py-12 md:px-24 hide-scroll"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
           {duplicatedArtists.map((artist, index) => {
             const duration = 3 + (index % 3);
             const delay = (index % 5) * 0.4;
@@ -53,11 +96,6 @@ export default function ArtistMarquee({ artists }) {
                     alt={artist.name}
                     className="w-full h-full object-cover grayscale group-hover/item:grayscale-0 transition-all duration-500"
                   />
-                </div>
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/item:opacity-100 transition-opacity duration-300 pointer-events-none">
-                  <div className="bg-black/60 px-4 py-2 rounded-full backdrop-blur-sm">
-                    <span className="text-[#EAE9DE] font-bold tracking-wider">{artist.name}</span>
-                  </div>
                 </div>
               </motion.div>
             );

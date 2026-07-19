@@ -26,7 +26,7 @@ export default function ServicesSection() {
   ];
 
   return (
-    <section className="bg-[#2B2B2B] py-24 px-4 sm:px-6 lg:px-8 border-t border-white/5 relative z-10 overflow-hidden">
+    <section className="bg-[#2B2B2B]/60 backdrop-blur-3xl py-24 px-4 sm:px-6 lg:px-8 border-t border-white/10 relative z-20 overflow-hidden -mt-[15vh] shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#EF7D33]/5 rounded-full blur-[150px] pointer-events-none"></div>
       
       <div className="max-w-7xl mx-auto relative z-10">

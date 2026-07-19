@@ -18,12 +18,14 @@ export default function Home() {
       <HeroScroll />
       
       {/* Subsequent Sections */}
-      <div className="relative z-10 bg-[#2B2B2B]">
+      <div className="relative z-20">
         <ServicesSection />
-        <LogoMarquee />
-        <ArtistsSection />
-        <ReleasesSection />
-        <Footer />
+        <div className="bg-[#2B2B2B] relative z-20">
+          <LogoMarquee />
+          <ArtistsSection />
+          <ReleasesSection />
+          <Footer />
+        </div>
       </div>
     </main>
   );

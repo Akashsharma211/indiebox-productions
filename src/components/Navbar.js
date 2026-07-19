@@ -38,8 +38,7 @@ export default function Navbar() {
               { name: "Releases", href: "/releases" },
               { name: "Services", href: "/services" },
               { name: "Licensing", href: "/licensing" },
-              { name: "Brand Partnership", href: "/brand-partnership" },
-              { name: "Socials", href: "/socials" }
+              { name: "Brand Partnership", href: "/brand-partnership" }
             ].map((item) => (
               <Link key={item.name} href={item.href} className="text-[#EAE9DE] hover:text-[#EF7D33] transition-colors text-[10px] xl:text-[11px] font-black tracking-widest uppercase whitespace-nowrap">
                 {item.name}

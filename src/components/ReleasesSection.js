@@ -13,9 +13,7 @@ export default async function ReleasesSection() {
     // Fallback data if MongoDB is not connected
     releases = [
       { id: "1", title: "Midnight Sun", artistName: "ECLIPSE", coverUrl: "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&w=800&q=80", type: "Album", releaseDate: new Date() },
-      { id: "2", title: "Visions", artistName: "NOVA", coverUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80", type: "EP", releaseDate: new Date() },
-      { id: "3", title: "Live at the Roxy", artistName: "THE DRIFTERS", coverUrl: "https://images.unsplash.com/photo-1493225457124-a1a2a5f5f9af?auto=format&fit=crop&w=800&q=80", type: "Live", releaseDate: new Date() },
-      { id: "4", title: "Awakening", artistName: "ECLIPSE", coverUrl: "https://images.unsplash.com/photo-1557672172-298e090bd0f1?auto=format&fit=crop&w=800&q=80", type: "Single", releaseDate: new Date() }
+      { id: "2", title: "Visions", artistName: "NOVA", coverUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80", type: "EP", releaseDate: new Date() }
     ];
   }
 

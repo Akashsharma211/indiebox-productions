@@ -16,16 +16,12 @@ export default async function ArtistsSection() {
   // Fallback data if MongoDB is not connected or empty
   if (artists.length === 0) {
     artists = [
-      { id: "1", name: "ECLIPSE", genre: "Electronic / Wave", bio: "A pioneer in the underground wave scene, ECLIPSE blends ethereal synths with heavy bass.", imageUrl: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=800&q=80" },
-      { id: "2", name: "NOVA", genre: "Alt-R&B", bio: "Hailing from London, NOVA's soulful vocals over experimental trap beats have garnered millions of streams.", imageUrl: "https://images.unsplash.com/photo-1493225457124-a1a2a5f5f9af?auto=format&fit=crop&w=800&q=80" },
-      { id: "3", name: "THE DRIFTERS", genre: "Indie Rock", bio: "Raw, unfiltered energy. The Drifters are bringing guitar music back to the forefront of the underground.", imageUrl: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80" },
-      { id: "4", name: "LUNA", genre: "Pop", bio: "Creating immersive dream-pop experiences.", imageUrl: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" },
-      { id: "5", name: "KAI", genre: "Hip-Hop", bio: "Lyricism that pushes boundaries.", imageUrl: "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?auto=format&fit=crop&w=800&q=80" },
-      { id: "6", name: "AURA", genre: "Synthwave", bio: "Retro-futuristic beats that transport you to another dimension.", imageUrl: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" },
-      { id: "7", name: "ZEPHYR", genre: "Lo-Fi", bio: "Chill beats for late night drives and deep thought.", imageUrl: "https://images.unsplash.com/photo-1499155286265-79a9dc9ce0f5?auto=format&fit=crop&w=800&q=80" },
-      { id: "8", name: "CRIMSON", genre: "Metalcore", bio: "Heavy riffs and intense energy defining the modern metal scene.", imageUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80" },
-      { id: "9", name: "MIRA", genre: "Acoustic", bio: "Soul-stirring melodies and raw, acoustic performances.", imageUrl: "https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?auto=format&fit=crop&w=800&q=80" },
-      { id: "10", name: "VORTEX", genre: "Techno", bio: "Driving basslines and hypnotic rhythms for the club.", imageUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80" }
+      { id: "1", name: "Ankrish Sharma", genre: "Vocals / Composition", bio: "Bringing a fresh wave of emotive composition to the forefront.", imageUrl: "/images/artists/Ankrish sharma.jpeg" },
+      { id: "2", name: "Anmol Sharma", genre: "Producer / Multi-instrumentalist", bio: "Fusing organic instrumentation with heavy synthscapes.", imageUrl: "/images/artists/Anmol Sharma.jpeg" },
+      { id: "3", name: "Chaandsaa", genre: "Singer / Songwriter", bio: "Lyrical depth that resonates across borders.", imageUrl: "/images/artists/Chaandsaa.jpg" },
+      { id: "4", name: "Kajal", genre: "Pop / R&B", bio: "Delivering powerful vocal performances and dynamic stage presence.", imageUrl: "/images/artists/Kajal.jpeg" },
+      { id: "5", name: "Vashu Solanki", genre: "Electronic / Hip-Hop", bio: "Pushing the boundaries of rhythm and electronic sound design.", imageUrl: "/images/artists/Vashu solanki.jpeg" },
+      { id: "6", name: "Nova", genre: "Alternative", bio: "Raw, unfiltered energy defining the modern alt scene.", imageUrl: "/images/artists/IMG_4555.JPEG" }
     ];
   }
 

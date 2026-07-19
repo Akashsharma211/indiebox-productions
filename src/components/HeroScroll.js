@@ -1,67 +1,65 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 
 export default function HeroScroll() {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
+  const [step, setStep] = useState(0);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
-  // 0 to 0.2: First text fades in and out
-  const opacity1 = useTransform(scrollYProgress, [0, 0.1, 0.25], [0, 1, 0]);
-  const y1 = useTransform(scrollYProgress, [0, 0.1, 0.25], [50, 0, -50]);
-
-  // 0.35 to 0.6: Second text
-  const opacity2 = useTransform(scrollYProgress, [0.35, 0.5, 0.65], [0, 1, 0]);
-  const y2 = useTransform(scrollYProgress, [0.35, 0.5, 0.65], [50, 0, -50]);
-
-  // 0.75 to 1: Third text
-  const opacity3 = useTransform(scrollYProgress, [0.75, 0.9, 1], [0, 1, 0]);
-  const y3 = useTransform(scrollYProgress, [0.75, 0.9, 1], [50, 0, -50]);
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (latest < 0.35) {
+      setStep(0);
+    } else if (latest >= 0.35 && latest < 0.75) {
+      setStep(1);
+    } else {
+      setStep(2);
+    }
+  });
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
     const frameCount = 210;
+    const loadedImages = [];
+    let currentIndex = 1;
 
     const currentFrame = (index) =>
       `/frames/ezgif-frame-${index.toString().padStart(3, "0")}.jpg`;
 
-    const preloadImages = () => {
-      for (let i = 1; i <= frameCount; i++) {
-        const img = new window.Image();
-        img.src = currentFrame(i);
+    // Preload all frames into an array for smooth scrolling
+    for (let i = 1; i <= frameCount; i++) {
+      const img = new window.Image();
+      img.src = currentFrame(i);
+      if (i === 1) {
+        img.onload = () => {
+          canvas.width = img.width;
+          canvas.height = img.height;
+          context.drawImage(img, 0, 0);
+        };
       }
-    };
-
-    const img = new window.Image();
-    img.src = currentFrame(1);
-    
-    img.onload = function () {
-      canvas.width = img.width;
-      canvas.height = img.height;
-      context.drawImage(img, 0, 0);
-    };
+      loadedImages.push(img);
+    }
 
     const updateImage = (index) => {
-      const nextImg = new window.Image();
-      nextImg.src = currentFrame(index);
-      nextImg.onload = function () {
-        context.drawImage(nextImg, 0, 0);
-      };
+      const img = loadedImages[index - 1];
+      if (img && img.complete) {
+        context.drawImage(img, 0, 0);
+      }
     };
 
     const handleScroll = () => {
       if (!containerRef.current) return;
       const { top, height } = containerRef.current.getBoundingClientRect();
-      const scrollY = -top; 
+      const scrollY = -top;
       const maxScroll = height - window.innerHeight;
-      
+
       let scrollFraction = scrollY / maxScroll;
       if (scrollFraction < 0) scrollFraction = 0;
       if (scrollFraction > 1) scrollFraction = 1;
@@ -71,40 +69,75 @@ export default function HeroScroll() {
         Math.max(1, Math.ceil(scrollFraction * frameCount))
       );
 
-      requestAnimationFrame(() => updateImage(frameIndex));
+      if (frameIndex !== currentIndex) {
+        currentIndex = frameIndex;
+        requestAnimationFrame(() => updateImage(frameIndex));
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    preloadImages();
-
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <div ref={containerRef} className="relative h-[500vh] bg-[#2B2B2B] w-full">
-      <div className="sticky top-0 left-0 w-full h-screen overflow-hidden bg-[#2B2B2B] flex justify-center items-center">
-        {/* Canvas Background */}
+    <div ref={containerRef} className="relative h-[500vh] bg-[#111] w-full">
+      <div className="sticky top-0 left-0 w-full h-screen overflow-hidden bg-[#111] flex justify-center items-center">
+        {/* Canvas Background - No opacity reduction so images are crystal clear */}
         <canvas
           ref={canvasRef}
-          className="absolute top-0 left-0 w-full h-full object-cover opacity-60"
+          className="absolute top-0 left-0 w-full h-full object-cover"
         />
-        
-        {/* Text Overlays */}
+
+        {/* Cinematic dark overlays to make text readable without muddying the images */}
+        <div className="absolute inset-0 bg-black/30 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_30%,_rgba(0,0,0,0.5)_100%)] pointer-events-none"></div>
+
+        {/* Text Overlays - Using AnimatePresence ensures they can NEVER overlap */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <motion.div style={{ opacity: opacity1, y: y1 }} className="absolute text-center px-4">
-            <h1 className="text-6xl md:text-8xl font-black text-[#EF7D33] tracking-tighter drop-shadow-2xl">INDIEBOX</h1>
-            <p className="text-xl md:text-3xl text-[#EAE9DE] mt-4 font-bold tracking-wide uppercase drop-shadow-md">Productions</p>
-          </motion.div>
+          <AnimatePresence mode="wait">
+            {step === 0 && (
+              <motion.div 
+                key="text1"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -50 }}
+                transition={{ duration: 0.5 }}
+                className="absolute text-center px-4"
+              >
+                <h1 className="text-6xl md:text-8xl font-black text-[#EF7D33] tracking-tighter drop-shadow-2xl">INDIEBOX</h1>
+                <p className="text-xl md:text-3xl text-[#EAE9DE] mt-4 font-bold tracking-wide uppercase drop-shadow-md">Productions</p>
+              </motion.div>
+            )}
 
-          <motion.div style={{ opacity: opacity2, y: y2 }} className="absolute text-center px-4">
-            <h2 className="text-5xl md:text-7xl font-bold text-[#EF7D33] tracking-tight drop-shadow-xl">Defining the Sound</h2>
-            <p className="text-xl md:text-2xl text-[#EAE9DE] mt-4 font-medium drop-shadow-md">Where visionaries meet their true potential.</p>
-          </motion.div>
+            {step === 1 && (
+              <motion.div 
+                key="text2"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -50 }}
+                transition={{ duration: 0.5 }}
+                className="absolute text-center px-4"
+              >
+                <h2 className="text-5xl md:text-7xl font-bold text-[#EF7D33] tracking-tight drop-shadow-xl">Defining the Sound</h2>
+                <p className="text-xl md:text-2xl text-[#EAE9DE] mt-4 font-medium drop-shadow-md">Where visionaries meet their true potential.</p>
+              </motion.div>
+            )}
 
-          <motion.div style={{ opacity: opacity3, y: y3 }} className="absolute text-center px-4">
-            <h2 className="text-5xl md:text-7xl font-bold text-[#EF7D33] tracking-tight drop-shadow-xl">Global Impact</h2>
-            <p className="text-xl md:text-2xl text-[#EAE9DE] mt-4 font-medium drop-shadow-md">Echoing across the world.</p>
-          </motion.div>
+            {step === 2 && (
+              <motion.div 
+                key="text3"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -50 }}
+                transition={{ duration: 0.5 }}
+                className="absolute text-center px-4"
+              >
+                <h2 className="text-5xl md:text-7xl font-bold text-[#EF7D33] tracking-tight drop-shadow-xl">Global Impact</h2>
+                <p className="text-xl md:text-2xl text-[#EAE9DE] mt-4 font-medium drop-shadow-md">Echoing across the world.</p>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         {/* Gradient overlay at bottom for smooth transition to next section */}

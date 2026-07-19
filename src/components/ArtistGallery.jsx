@@ -43,11 +43,7 @@ export default function ArtistGallery({ artists }) {
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                 />
               </div>
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                <div className="bg-black/60 px-4 py-2 rounded-full backdrop-blur-sm">
-                  <span className="text-[#EAE9DE] font-bold tracking-wider">{artist.name}</span>
-                </div>
-              </div>
+
             </motion.div>
           );
         })}
