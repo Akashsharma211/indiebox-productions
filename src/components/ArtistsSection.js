@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import ArtistMarquee from "./ArtistMarquee";
 
@@ -23,12 +22,6 @@ export default function ArtistsSection() {
 
       <div className="w-full">
         <ArtistMarquee artists={artists} />
-      </div>
-      
-      <div className="mt-8 px-4 sm:px-6 lg:px-8 flex justify-center">
-        <Link href="/artists" className="flex items-center text-[#EF7D33] hover:text-[#EAE9DE] transition-colors uppercase text-sm font-bold tracking-wider">
-          View All Roster <ArrowRight className="ml-2 w-4 h-4" />
-        </Link>
       </div>
     </section>
   );

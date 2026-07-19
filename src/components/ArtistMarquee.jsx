@@ -127,11 +127,11 @@ export default function ArtistMarquee({ artists }) {
                 <X size={24} />
               </button>
 
-              <div className="w-full md:w-1/2 h-64 md:h-auto relative">
+              <div className="w-full md:w-1/2 h-80 md:h-auto relative">
                 <img
                   src={selectedArtist.imageUrl}
                   alt={selectedArtist.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A] md:from-transparent md:bg-gradient-to-r via-transparent to-transparent"></div>
               </div>
