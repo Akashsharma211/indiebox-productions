@@ -2,9 +2,12 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  const isBookNowPage = pathname === "/book-now";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,28 +50,32 @@ export default function Navbar() {
           </div>
 
           {/* Top Navbar Book Now Button */}
-          <Link 
-            href="/book-now" 
-            className="flex-shrink-0 bg-[#EF7D33] text-[#2B2B2B] hover:bg-[#EAE9DE] transition-colors px-6 py-2.5 rounded-full font-bold text-sm shadow-lg whitespace-nowrap"
-          >
-            Book Now
-          </Link>
+          {!isBookNowPage && (
+            <Link 
+              href="/book-now" 
+              className="flex-shrink-0 bg-[#EF7D33] text-[#2B2B2B] hover:bg-[#EAE9DE] transition-colors px-6 py-2.5 rounded-full font-bold text-sm shadow-lg whitespace-nowrap"
+            >
+              Book Now
+            </Link>
+          )}
         </div>
       </nav>
 
       {/* Floating "Book Now" Button (Visible when scrolled, right side downward) */}
-      <div 
-        className={`fixed bottom-8 right-8 z-50 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          isScrolled ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
-        }`}
-      >
-        <Link 
-          href="/book-now" 
-          className="bg-[#EF7D33] text-[#2B2B2B] hover:bg-[#EAE9DE] transition-colors px-8 py-4 rounded-full font-black text-sm tracking-widest uppercase shadow-2xl border border-[#EF7D33]/20 whitespace-nowrap flex items-center justify-center hover:scale-105 transform duration-300"
+      {!isBookNowPage && (
+        <div 
+          className={`fixed bottom-8 right-8 z-50 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            isScrolled ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
+          }`}
         >
-          Book Now
-        </Link>
-      </div>
+          <Link 
+            href="/book-now" 
+            className="bg-[#EF7D33] text-[#2B2B2B] hover:bg-[#EAE9DE] transition-colors px-8 py-4 rounded-full font-black text-sm tracking-widest uppercase shadow-2xl border border-[#EF7D33]/20 whitespace-nowrap flex items-center justify-center hover:scale-105 transform duration-300"
+          >
+            Book Now
+          </Link>
+        </div>
+      )}
     </>
   );
 }
