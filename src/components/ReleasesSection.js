@@ -34,7 +34,7 @@ export default async function ReleasesSection() {
                   alt="Mahiya Ve" 
                   className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none"></div>
+                <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none"></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/40"></div>
 
                 <div className="absolute top-6 left-6 flex items-center gap-1">
@@ -91,7 +91,7 @@ export default async function ReleasesSection() {
                   alt="Gumshuda" 
                   className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none"></div>
+                <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none"></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/40"></div>
 
                 <div className="absolute top-6 right-6 flex items-center gap-1">

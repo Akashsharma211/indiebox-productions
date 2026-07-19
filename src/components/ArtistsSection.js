@@ -21,7 +21,7 @@ export default async function ArtistsSection() {
       { id: "3", name: "Chaandsaa", genre: "Singer / Songwriter", bio: "Lyrical depth that resonates across borders.", imageUrl: "/images/artists/Chaandsaa.jpg" },
       { id: "4", name: "Kajal", genre: "Pop / R&B", bio: "Delivering powerful vocal performances and dynamic stage presence.", imageUrl: "/images/artists/Kajal.jpeg" },
       { id: "5", name: "Vashu Solanki", genre: "Electronic / Hip-Hop", bio: "Pushing the boundaries of rhythm and electronic sound design.", imageUrl: "/images/artists/Vashu solanki.jpeg" },
-      { id: "6", name: "Nova", genre: "Alternative", bio: "Raw, unfiltered energy defining the modern alt scene.", imageUrl: "/images/artists/IMG_4555.JPEG" }
+      { id: "6", name: "Jatin Arya", genre: "Songwriter / Musician", bio: "Crafting heartfelt lyrics and captivating melodies.", imageUrl: "/images/artists/IMG_4555.JPEG" }
     ];
   }
 
