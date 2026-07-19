@@ -33,19 +33,29 @@ export default function HeroScroll() {
     const currentFrame = (index) =>
       `/frames/ezgif-frame-${index.toString().padStart(3, "0")}.jpg`;
 
-    // Preload all frames into an array for smooth scrolling
-    for (let i = 1; i <= frameCount; i++) {
-      const img = new window.Image();
-      img.src = currentFrame(i);
-      if (i === 1) {
-        img.onload = () => {
-          canvas.width = img.width;
-          canvas.height = img.height;
-          context.drawImage(img, 0, 0);
-        };
+    // Preload first frame immediately to show it on load
+    const firstImg = new window.Image();
+    firstImg.src = currentFrame(1);
+    firstImg.onload = () => {
+      canvas.width = firstImg.width;
+      canvas.height = firstImg.height;
+      context.drawImage(firstImg, 0, 0);
+    };
+    loadedImages[0] = firstImg;
+
+    // Asynchronously preload the rest of the frames to prevent massive network/memory lag
+    const preloadRest = async () => {
+      for (let i = 2; i <= frameCount; i++) {
+        const img = new window.Image();
+        img.src = currentFrame(i);
+        loadedImages[i - 1] = img;
+        // Pause briefly every 5 frames to let the browser breathe
+        if (i % 5 === 0) {
+          await new Promise(resolve => setTimeout(resolve, 10));
+        }
       }
-      loadedImages.push(img);
-    }
+    };
+    preloadRest();
 
     const updateImage = (index) => {
       const img = loadedImages[index - 1];
