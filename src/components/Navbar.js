@@ -37,6 +37,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center space-x-5 xl:space-x-8">
             {[
               { name: "Home", href: "/" },
+              { name: "About", href: "/about" },
               { name: "Artist", href: "/artists" },
               { name: "Releases", href: "/releases" },
               { name: "Services", href: "/services" },

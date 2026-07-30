@@ -12,8 +12,8 @@ export default async function ReleasesSection() {
   } catch (error) {
     // Fallback data if MongoDB is not connected
     releases = [
-      { id: "1", title: "Midnight Sun", artistName: "ECLIPSE", coverUrl: "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?auto=format&fit=crop&w=800&q=80", type: "Album", releaseDate: new Date() },
-      { id: "2", title: "Visions", artistName: "NOVA", coverUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80", type: "EP", releaseDate: new Date() }
+      { id: "1", title: "Ik Aas", artistName: "Chaandsaa", coverUrl: "/spotify-artwork-ik-aas.jpg", type: "Single", releaseDate: new Date() },
+      { id: "2", title: "Gumshuda", artistName: "Jatin Arya", coverUrl: "/spotify-artwork-gumshuda-3000x3000.jpg", type: "Single", releaseDate: new Date() }
     ];
   }
 
@@ -24,14 +24,14 @@ export default async function ReleasesSection() {
         
         <div className="flex flex-col gap-8 md:gap-12">
           
-          {/* SET 1 */}
+          {/* SET 1 - Ik Aas by Chaandsaa */}
           {releases[0] && (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
               {/* Large Tile (Details) */}
               <div className="group relative w-full aspect-[4/5] md:aspect-auto md:h-[600px] lg:h-[700px] md:col-span-2 overflow-hidden bg-black flex items-center justify-center cursor-pointer">
                 <img 
-                  src="/spotify-artwork-mahiya-ve-3000x3000.jpg" 
-                  alt="Mahiya Ve" 
+                  src="/spotify-artwork-ik-aas.jpg" 
+                  alt="Ik Aas" 
                   className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700 ease-out"
                 />
                 <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none"></div>
@@ -44,16 +44,13 @@ export default async function ReleasesSection() {
 
                 <div className="absolute bottom-10 left-0 right-0 px-6 flex flex-col items-center text-center">
                   <div className="flex items-center gap-3 mb-2">
-                    <span className="text-white font-bold tracking-widest uppercase text-sm md:text-base">Jatin Arya</span>
+                    <span className="text-white font-bold tracking-widest uppercase text-sm md:text-base">Chaandsaa</span>
                     <span className="text-white italic font-serif text-sm md:text-base">Single</span>
                   </div>
                   <div className="relative inline-block">
-                    <h3 className="text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[0.85] tracking-tighter uppercase drop-shadow-2xl">
-                      {['MAHIYA', 'VE'].map((word, wIdx) => (
-                        <span key={wIdx} className={wIdx % 2 !== 0 ? 'italic font-serif font-medium mr-3' : 'mr-3'}>
-                          {word}
-                        </span>
-                      ))}
+                    <h3 className="text-6xl md:text-7xl lg:text-8xl font-black text-white leading-[0.85] tracking-normal uppercase drop-shadow-2xl flex items-center justify-center gap-3 sm:gap-5">
+                      <span>IK</span>
+                      <span className="italic font-serif font-medium">AAS</span>
                     </h3>
                   </div>
                 </div>
@@ -61,15 +58,19 @@ export default async function ReleasesSection() {
 
               {/* Small Tile (Video) */}
               <div className="relative w-full aspect-[4/5] md:aspect-auto md:h-[600px] lg:h-[700px] md:col-span-1 overflow-hidden bg-black">
-                <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-70 hover:opacity-100 transition-opacity duration-500">
-                  <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+                <video 
+                  src="/ik-aas-video.webm" 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline 
+                  className="absolute inset-0 w-full h-full object-cover opacity-70 hover:opacity-100 transition-opacity duration-500" 
+                />
               </div>
             </div>
           )}
 
-          {/* SET 2 */}
+          {/* SET 2 - Gumshuda */}
           {releases[1] && (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
               {/* Small Tile (Video) - Reversed visually on Desktop */}

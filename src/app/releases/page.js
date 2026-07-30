@@ -4,12 +4,12 @@ import Footer from "@/components/Footer";
 import Image from "next/image";
 
 export const metadata = {
-  title: "Latest Releases | New Indie Music — Gumshuda, Mahiya Ve",
-  description: "Listen to the latest music releases from Indiebox Productions. Stream Gumshuda and Mahiya Ve by Jatin Arya. Discover fresh indie music from India's top independent music label.",
-  keywords: ["Gumshuda song", "Mahiya Ve song", "Jatin Arya new song", "indie music releases India", "new indie songs 2024", "Indiebox releases", "indie music streaming"],
+  title: "Latest Releases | New Indie Music — Ik Aas, Gumshuda",
+  description: "Listen to the latest music releases from Indiebox Productions. Stream Ik Aas by Chaandsaa and Gumshuda by Jatin Arya. Discover fresh indie music from India's top independent music label.",
+  keywords: ["Ik Aas song", "Gumshuda song", "Chaandsaa new song", "indie music releases India", "new indie songs 2024", "Indiebox releases", "indie music streaming"],
   openGraph: {
     title: "Latest Releases | Indiebox Productions",
-    description: "New music from Indiebox Productions. Stream Gumshuda and Mahiya Ve by Jatin Arya and more fresh indie music.",
+    description: "New music from Indiebox Productions. Stream Ik Aas by Chaandsaa and Gumshuda by Jatin Arya.",
   },
 };
 
@@ -25,7 +25,7 @@ export default async function ReleasesPage() {
     });
   } catch (error) {
     releases = [
-      { id: "1", title: "Mahiya Ve", artistName: "Jatin Arya", coverUrl: "/spotify-artwork-mahiya-ve-3000x3000.jpg", type: "Single", releaseDate: new Date() },
+      { id: "1", title: "Ik Aas", artistName: "Chaandsaa", coverUrl: "/spotify-artwork-ik-aas.jpg", type: "Single", releaseDate: new Date() },
       { id: "2", title: "Gumshuda", artistName: "Jatin Arya", coverUrl: "/spotify-artwork-gumshuda-3000x3000.jpg", type: "Single", releaseDate: new Date() }
     ];
   }
