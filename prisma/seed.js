@@ -62,10 +62,10 @@ async function main() {
 
   await prisma.release.create({
     data: {
-      title: "Golden Hour",
-      artistName: artist3.name,
-      coverUrl: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=800&q=80",
-      releaseDate: new Date("2026-05-10"),
+      title: "Tum Aa Gaye",
+      artistName: "Anmol Sharma",
+      coverUrl: "/Tum Aa Gaye_640x640.jpg",
+      releaseDate: new Date("2026-07-30"),
       type: "Single",
       listenUrl: "https://spotify.com"
     }
