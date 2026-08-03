@@ -51,7 +51,7 @@ export default function Footer() {
               <Link href="/book-now" className="text-gray-400 hover:text-[#EAE9DE] transition-colors" aria-label="Contact">
                 <MessageCircle className="w-5 h-5" />
               </Link>
-              <a href="mailto:jatinarya.team@gmail.com" className="text-gray-400 hover:text-[#EAE9DE] transition-colors" aria-label="Email">
+              <a href="mailto:contact@indieboxproductions.com" className="text-gray-400 hover:text-[#EAE9DE] transition-colors" aria-label="Email">
                 <Mail className="w-5 h-5" />
               </a>
             </div>

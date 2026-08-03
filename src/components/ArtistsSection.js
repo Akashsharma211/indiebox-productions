@@ -3,11 +3,11 @@ import ArtistMarquee from "./ArtistMarquee";
 
 export default function ArtistsSection() {
   const artists = [
-    { id: "1", name: "Ankrish Sharma", genre: "Vocals / Composition", bio: "Bringing a fresh wave of emotive composition to the forefront.", imageUrl: "/images/artists/Ankrish sharma.jpeg" },
-    { id: "2", name: "Anmol Sharma", genre: "Producer / Multi-instrumentalist", bio: "Fusing organic instrumentation with heavy synthscapes.", imageUrl: "/images/artists/Anmol Sharma.jpeg" },
+    { id: "1", name: "Ankrish Sharma", genre: "Drummer and Vocals", bio: "Bringing a fresh wave of emotive composition to the forefront.", imageUrl: "/images/artists/Ankrish sharma.jpeg" },
+    { id: "2", name: "Anmol Sharma", genre: "Singer and Composer", bio: "Fusing organic instrumentation with heavy synthscapes.", imageUrl: "/images/artists/Anmol Sharma.jpeg" },
     { id: "3", name: "Chaandsaa", genre: "Singer / Songwriter", bio: "Lyrical depth that resonates across borders.", imageUrl: "/images/artists/Chaandsaa.jpg" },
-    { id: "4", name: "Kajal", genre: "Pop / R&B", bio: "Delivering powerful vocal performances and dynamic stage presence.", imageUrl: "/images/artists/Kajal.jpeg" },
-    { id: "5", name: "Vashu Solanki", genre: "Electronic / Hip-Hop", bio: "Pushing the boundaries of rhythm and electronic sound design.", imageUrl: "/images/artists/Vashu solanki.jpeg" },
+    { id: "4", name: "Kajal", genre: "Keyboards and Vocals", bio: "Delivering powerful vocal performances and dynamic stage presence.", imageUrl: "/images/artists/Kajal.jpeg" },
+    { id: "5", name: "Vashu Solanki", genre: "Guitars", bio: "Pushing the boundaries of rhythm and electronic sound design.", imageUrl: "/images/artists/Vashu solanki.jpeg" },
     { id: "6", name: "Jatin Arya", genre: "Songwriter / Musician", bio: "Crafting heartfelt lyrics and captivating melodies.", imageUrl: "/images/artists/IMG_4555.JPEG" }
   ];
 
